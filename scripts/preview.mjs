@@ -1,0 +1,5 @@
+import http from 'node:http';
+import worker from '../dist/server/index.js';
+const data=new Map();let revision=0;
+const BUCKET={async get(k){const v=data.get(k);return v?{etag:v.etag,json:async()=>JSON.parse(v.body)}:null},async put(k,body,options={}){const v=data.get(k),condition=options.onlyIf;if(condition?.etagDoesNotMatch==='*'&&v)return null;if(condition?.etagMatches&&v?.etag!==condition.etagMatches)return null;const etag=String(++revision);data.set(k,{body,etag});return {etag}}};
+http.createServer(async(req,res)=>{try{const chunks=[];for await(const c of req)chunks.push(c);const r=new Request('http://localhost:8000'+req.url,{method:req.method,headers:req.headers,...(['GET','HEAD'].includes(req.method)?{}:{body:Buffer.concat(chunks)})});const out=await worker.fetch(r,{BUCKET});res.writeHead(out.status,Object.fromEntries(out.headers));res.end(Buffer.from(await out.arrayBuffer()))}catch(e){console.error(e);res.writeHead(500);res.end('error')}}).listen(8000,'127.0.0.1',()=>console.log('Local preview http://localhost:8000 (in-memory test relay)'));

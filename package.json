@@ -1,8 +1,12 @@
 {
   "name": "courtboard",
-  "version": "1.0.0",
   "private": true,
-  "description": "오프라인 농구 전광판 및 대회 경기 관리",
-  "scripts": { "test": "node test.cjs" },
-  "engines": { "node": ">=20" }
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node test.cjs && node test-relay.mjs && node scripts/test-d1.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
 }

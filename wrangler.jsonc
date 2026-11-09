@@ -1,0 +1,22 @@
+{
+	"name": "courtboard",
+	"main": "dist/server/index.js",
+	"compatibility_date": "2026-11-01",
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "courtboard-remote",
+			"database_id": "5b2dd70d-ae4c-4f80-859e-0ca7a07f5ae8",
+			"migrations_dir": "migrations"
+		},
+		{
+			"binding": "courtboard_remote",
+			"database_name": "courtboard-remote",
+			"database_id": "5b2dd70d-ae4c-4f80-859e-0ca7a07f5ae8",
+			"remote": true
+		}
+	],
+	"vars": {
+		"ALLOWED_ORIGIN": "https://choik12.github.io"
+	}
+}
