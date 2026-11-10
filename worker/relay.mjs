@@ -1,7 +1,7 @@
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});
 const token=()=>crypto.randomUUID()+crypto.randomUUID();
 const key=code=>'rooms/'+code+'.json';
-const allowed=/^(toggle|shot|reset|14|pos|poss:[12]|period|undo|score:[01]:(-1|1|2|3)|foul:[01]:(-1|1)|timeout:[01]|toMinus:[01]|adjust:(clock:(-60000|60000|-1000|1000)|shot:(-1000|1000)))$/;
+const allowed=/^(toggle|shot|reset|14|pos|poss:[12]|period|periodPrev|undo|score:[01]:(-1|1|2|3)|foul:[01]:(-1|1)|timeout:[01]|toMinus:[01]|adjust:(clock:(-60000|60000|-1000|1000)|shot:(-1000|1000)))$/;
 class Failure extends Error{constructor(status,message){super(message);this.status=status}}
 function d1Store(db){return {
  async get(k){const row=await db.prepare('SELECT payload, etag FROM rooms WHERE room_key = ?').bind(k).first();return row?{etag:row.etag,json:async()=>JSON.parse(row.payload)}:null},

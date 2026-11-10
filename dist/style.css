@@ -27,3 +27,5 @@ header{gap:10px}.brand small{font-weight:400}.heading{gap:16px;margin-bottom:16p
 .board{color:#edf2ef}
 
 .pair-code{font:700 42px monospace;letter-spacing:10px;text-align:center;padding:20px;background:#0b0b0b;border:1px solid #444;margin:16px 0}.wireless-actions{display:flex;gap:8px;flex-wrap:wrap}#wirelessPending{margin:16px 0}#wirelessPending button{margin-right:8px}#wirelessBadge{position:fixed;left:12px;bottom:12px;font-size:11px;color:#aaa;background:#161616e8;padding:6px 10px;z-index:12;border:1px solid #444;border-radius:4px}#wirelessBadge[hidden]{display:none}#wirelessDialog a{color:#ddd}.display #wirelessBadge{display:none}
+
+.delete-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.delete-actions button{font-size:11px;color:#d2a3a0;flex:1;min-height:44px}
